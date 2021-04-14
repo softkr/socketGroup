@@ -1,0 +1,45 @@
+<!--
+ * @Description: 
+ * @Author: Elijah Roh
+ * @Date: 2021-03-26 16:53:03
+ * @LastEditTime: 2021-03-26 18:50:46
+ * @LastEditors: Elijah Roh
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>소켓 테스트</title>
+
+    <script type="text/javascript">
+      function WebSocketTest() {
+        if ('WebSocket' in window) {
+          var ws = new WebSocket('ws://localhost:9000');
+
+          ws.onopen = function () {
+            var sendData = { msg: '전송테스트' };
+            ws.send(JSON.stringify(sendData));
+            console.log('데이터 전송중...');
+          };
+
+          ws.onmessage = function (evt) {
+            var received_msg = evt.data;
+
+            console.log(received_msg);
+            console.log('데이터 받음...');
+          };
+
+          ws.onclose = function () {
+            console.log('연결종료...');
+          };
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="sse">
+      <a href="javascript:WebSocketTest()">WebSocket 실행</a>
+    </div>
+  </body>
+</html>
