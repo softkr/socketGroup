@@ -5,7 +5,7 @@ import 'dart:async' show Timer;
 main() {
   WebSocket.connect('ws://localhost:8000').then((WebSocket ws) {
       // our websocket server runs on ws://localhost:8000
-    if (ws?.readyState == WebSocket.open) {
+    if (ws.readyState == WebSocket.open) {
         // as soon as websocket is connected and ready for use, we can start talking to other end
       ws.add(json.encode({
         'data': 'from client at ${DateTime.now().toString()}',
